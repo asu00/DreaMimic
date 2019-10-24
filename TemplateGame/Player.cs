@@ -16,6 +16,7 @@ namespace LoopGame
         bool countDead;
         bool nowGame;
         public bool NowGame { get { return nowGame; } set { nowGame = value; } }
+        public int Size => CHIP_SIZE;
 
         //移動　向き
         ChipNum chipNum = new ChipNum();
@@ -56,7 +57,7 @@ namespace LoopGame
             playerIndex = chipNum.PlayerIndex(playerSheet);
             //移動
             dirNum = playerSheet[playerIndex];
-            pos = new Vector2(playerIndex % sheetSize * CHIP_SIZE, playerIndex / sheetSize * CHIP_SIZE); 
+            pos = new Vector2(playerIndex % sheetSize * CHIP_SIZE, playerIndex / sheetSize * CHIP_SIZE);
             moveF = false;
 
             keys = new Keys[] { Keys.W,  Keys.D, Keys.S ,Keys.A,
@@ -66,53 +67,66 @@ namespace LoopGame
             count = NEW_COUNT;
             animeNum = 0;
         }
-        public void SetNumber(int[] noFloor, int noChara)
+        public void SetNumber(int[] noFloor, int noChara, int dirMin, int dirMax, int allDirCount)
         {
-            chipNum.Init(noChara);
+            chipNum.Init(noChara, dirMin, dirMax, allDirCount);
             collition.Init(noFloor, noChara);
             deadAnime.Init(PLAYER_COUNT, R_MIN, A_MAX, TS_MAX);
         }
 
-        public void Move(int[] playerSheet, int sheetSize, int allDirCount)
+        public void Move(int[] playerSheet, int sheetSize, int allDirCount, bool dirFix)
         {
             beforeDir = dirNum;
-            moveF = false;
+            moveF = true;
 
             //移動
             if (!collDead || !countDead)
             {
                 moveF = true;
+                if (input.InputKey((int)KeyNum.Up - 1) || input.InputKey((int)KeyNum.Up - 1 + allDirCount)) //1からなので+1\
+                    dirNum = (int)KeyNum.Up;
+                else if (input.InputKey((int)KeyNum.Right - 1) || input.InputKey((int)KeyNum.Right - 1 + allDirCount))
+                    dirNum = (int)KeyNum.Right;
+                else if (input.InputKey((int)KeyNum.Down - 1) || input.InputKey((int)KeyNum.Down - 1 + allDirCount))
+                    dirNum = (int)KeyNum.Down;
+                else if (input.InputKey((int)KeyNum.Left - 1) || input.InputKey((int)KeyNum.Left - 1 + allDirCount))
+                    dirNum = (int)KeyNum.Left;
+                else
+                {
+                    moveF = false;
+                    return;
+                }
 
-                if (input.InputKey((int)KeyNum.Up - 1) || input.InputKey((int)KeyNum.Up - 1 + allDirCount)) //1からなので+1***
+                //方向補正がonだったら補正
+                if (dirFix)
+                    dirNum = chipNum.TChengeDir(beforeDir, dirNum);
+
+                //移動
+                if (dirNum == (int)KeyNum.Up)
                 {
                     pos += new Vector2(0, -CHIP_SIZE);
-                    playerIndex -= sheetSize;  
-                    dirNum = (int)KeyNum.Up;
+                    playerIndex -= sheetSize;
                 }
-                else if (input.InputKey((int)KeyNum.Right - 1) || input.InputKey((int)KeyNum.Right - 1 + allDirCount))
+                else if (dirNum == (int)KeyNum.Right)
                 {
                     pos += new Vector2(CHIP_SIZE, 0);
                     playerIndex += A_D_MOVE;
-                    dirNum = (int)KeyNum.Right;
                 }
-                else if (input.InputKey((int)KeyNum.Down - 1) || input.InputKey((int)KeyNum.Down - 1 + allDirCount))
+                else if (dirNum == (int)KeyNum.Down)
                 {
                     pos += new Vector2(0, CHIP_SIZE);
                     playerIndex += sheetSize;
-                    dirNum = (int)KeyNum.Down;
                 }
-                else if (input.InputKey((int)KeyNum.Left - 1) || input.InputKey((int)KeyNum.Left - 1 + allDirCount))
+                else if (dirNum == (int)KeyNum.Left)
                 {
                     pos += new Vector2(-CHIP_SIZE, 0);
                     playerIndex -= A_D_MOVE;
-                    dirNum = (int)KeyNum.Left;
                 }
-                else
-                    moveF = false;
+
             }
         }
 
-        //当たり判定
+        // 当たり判定
         public bool DeadAction(int[] mapSheet, List<int> enemySheet)
         {
             if (collition.Coll(playerIndex, mapSheet, enemySheet))
@@ -156,9 +170,9 @@ namespace LoopGame
         public void Draw(SpriteBatch sb)
         {
             if (!collDead && !countDead)
-                sb.Draw(playerChip, new Rectangle((int)pos.X, (int)pos.Y , CHIP_SIZE, CHIP_SIZE), new Rectangle(dirNum * CHIP_SIZE, animeNum * CHIP_SIZE, CHIP_SIZE, CHIP_SIZE), Color.White);
+                sb.Draw(playerChip, new Rectangle((int)pos.X, (int)pos.Y, CHIP_SIZE, CHIP_SIZE), new Rectangle(dirNum * CHIP_SIZE, animeNum * CHIP_SIZE, CHIP_SIZE, CHIP_SIZE), Color.White);
             else
-                sb.Draw(playerChip, new Vector2((int)pos.X , (int)pos.Y ) + new Vector2(CHIP_SIZE / 2, CHIP_SIZE / 2), new Rectangle(dirNum * CHIP_SIZE, 0, CHIP_SIZE, CHIP_SIZE), Color.White * alpha, MathHelper.ToRadians(rot), new Vector2(CHIP_SIZE / 2, CHIP_SIZE / 2), textureSize, SpriteEffects.None, 0.0f);
+                sb.Draw(playerChip, new Vector2((int)pos.X, (int)pos.Y) + new Vector2(CHIP_SIZE / 2, CHIP_SIZE / 2), new Rectangle(dirNum * CHIP_SIZE, 0, CHIP_SIZE, CHIP_SIZE), Color.White * alpha, MathHelper.ToRadians(rot), new Vector2(CHIP_SIZE / 2, CHIP_SIZE / 2), textureSize, SpriteEffects.None, 0.0f);
 
         }
     }

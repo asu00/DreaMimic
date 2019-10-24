@@ -23,15 +23,23 @@ namespace LoopGame
         public int NowHelpState => (int)nowHelpState;
 
         Input input = new Input();
-        enum KeysNum { H, Y, N };
+        enum KeysNum { H, U, Y, J, N };
         Keys[] key;
+
+        //設定
+        bool dirDraw;
+        public bool DirDraw => dirDraw;
+        bool keyFix;
+        public bool KeyFix => keyFix;
 
         public Help()
         {
             helpPos = new Vector2(97, 97);
             keyPos = new Vector2(590, 20);
-            key = new Keys[] { Keys.H, Keys.Y, Keys.N };
+            key = new Keys[] { Keys.H, Keys.U, Keys.Y, Keys.J, Keys.N };
             input.Init(key);
+            dirDraw = true;//***
+            keyFix = false;
         }
         public void Init()
         {
@@ -43,7 +51,7 @@ namespace LoopGame
             help = content.Load<Texture2D>("option");
         }
 
-        public void HelpOpen(Action goTitle, Action helpTuto, SoundEffect se) 
+        public void HelpOpen(Action goTitle, Action helpTuto, SoundEffect se)
         {
             switch (nowHelpState)
             {
@@ -70,6 +78,14 @@ namespace LoopGame
                     {
                         se.Play();
                         goTitle();
+                    }
+                    else if (input.InputKey((int)KeysNum.U))
+                    {
+                        //切り替え
+                    }
+                    else if (input.InputKey((int)KeysNum.J))
+                    {
+                        //切り替え
                     }
                     break;
                 case HelpState.TUTO:

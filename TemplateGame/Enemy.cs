@@ -80,7 +80,7 @@ namespace LoopGame
             {
                 if (!dead[i])
                 {
-                    dirNum[i] = chipNum.EnemyDir(beforeDir, playerDir, dirNum[i]);
+                    dirNum[i] = chipNum.ChengeDir(beforeDir, playerDir, dirNum[i]);
 
                     if (dirNum[i] == (int)EnemyKeyNum.Up)
                     {

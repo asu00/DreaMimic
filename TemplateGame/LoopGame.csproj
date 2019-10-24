@@ -45,6 +45,7 @@
     <Compile Include="ChipNum.cs" />
     <Compile Include="Clear.cs" />
     <Compile Include="Collition.cs" />
+    <Compile Include="DirUI.cs" />
     <Compile Include="EndAnime.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Game1.cs" />

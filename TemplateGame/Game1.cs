@@ -48,7 +48,7 @@ namespace LoopGame
         TitleAndEnd titleAndEnd = new TitleAndEnd();
         Music music = new Music();
         Help help = new Help();
-
+        DirUI dirUI = new DirUI();
 
         /// <summary>
         /// コンストラクタ
@@ -89,7 +89,7 @@ namespace LoopGame
         {
             map.Init((int)stage);
             player.Init(map.NowPlayerSheet, map.SheetSize);
-            enemy.Init(map.NowEnemySheet, map.SheetSize,EnemyDeadSE);
+            enemy.Init(map.NowEnemySheet, map.SheetSize, EnemyDeadSE);
             start.Ini(player.Pos.X, player.Pos.Y, map.StageCount, (int)stage);
             clear.Ini();
             edA.Ini(SIZE);
@@ -97,9 +97,9 @@ namespace LoopGame
             wait.Init();
             score.Init((int)stage);
 
-            player.SetNumber(map.NoFloor, map.NoChara);
+            player.SetNumber(map.NoFloor, map.NoChara, map.DirMin, map.DirMax, map.AllDirCount);
             enemy.SetNumber(map.NoFloor, map.NoChara, map.DirMin, map.DirMax, map.AllDirCount);
-            
+
         }
         //新しいステージに行くとき
         void StageIni()
@@ -140,6 +140,7 @@ namespace LoopGame
             enemy.Load(Content);
             clear.Load(Content);
             edA.Load(Content, GraphicsDevice);
+            dirUI.Load(Content);
             // この上にロジックを記述
         }
 
@@ -235,7 +236,7 @@ namespace LoopGame
 
             if (stage < map.StageCount - 1)
                 music.SongPlayer((int)BGM.STAGE);
-            else 
+            else
                 music.SongPlayer((int)BGM.LAST_STAGE);
 
             map.Anime();
@@ -249,8 +250,9 @@ namespace LoopGame
                     HelpInput();
                     music.Init();
                     if (help.NowHelpState == 0)
-                        player.Move(map.NowPlayerSheet, map.SheetSize, map.AllDirCount);
-                    if (player.MoveF) music.SePlay((int)SE.WALK);
+                        player.Move(map.NowPlayerSheet, map.SheetSize, map.AllDirCount,help.KeyFix);
+                    if (player.MoveF)  music.SePlay((int)SE.WALK);
+
                 }
                 if (wait.WaitCount(player.MoveF)) //敵のターン
                 {
@@ -259,13 +261,14 @@ namespace LoopGame
                     score.Pluse();
                 }
             }
-
+            dirUI.CenterPos(player.Pos, player.Size);
+            dirUI.DirChenge(player.DirNum, help.KeyFix);
 
             if (enemy.DeadAction(map.NowMapSheet, map.NowPlayerSheet)) //敵が全部死んだら
             {
                 EnemyDead();
             }
-            else if (player.DeadAction(map.NowMapSheet, enemy.EnemyIndexs)) //自分が死んだら***
+            else if (player.DeadAction(map.NowMapSheet, enemy.EnemyIndexs)) //自分が死んだら
             {
                 PlayerDead();
             }
@@ -426,6 +429,7 @@ namespace LoopGame
             DraawPlayBase();
             score.Draw(spriteBatch);
             player.Draw(spriteBatch);
+            dirUI.Draw(spriteBatch, help.DirDraw);
             clear.Draw(spriteBatch, SIZE, SIZE);
             help.Draw(spriteBatch);
             tu.HelpTutoDraw(spriteBatch);
