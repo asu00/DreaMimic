@@ -12,6 +12,7 @@ namespace LoopGame
     {
         Texture2D enemyChip;
         const int CHIP_SIZE = 64;
+        public int Size => CHIP_SIZE;
         bool[] dead;
 
         //移動　向き
@@ -19,7 +20,10 @@ namespace LoopGame
         Collition collition = new Collition();
         List<int> enemyIndexs;
         List<int> dirNum;
+        public List<int> DirNum => dirNum;
         Vector2[] pos;
+        public Vector2[] Pos => pos;
+
         const int A_D_MOVE = 1;
         Vector2[] drawPos;
         const float D_FIX=5;

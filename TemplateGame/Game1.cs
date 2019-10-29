@@ -93,9 +93,10 @@ namespace LoopGame
             start.Ini(player.Pos.X, player.Pos.Y, map.StageCount, (int)stage);
             clear.Ini();
             edA.Ini(SIZE);
-            help.Init();
+            help.Init(music.Se[(int)SE.ENTER]);
             wait.Init();
             score.Init((int)stage);
+            dirUI.Init(enemy.EnemyIndexs.Count + 1);
 
             player.SetNumber(map.NoFloor, map.NoChara, map.DirMin, map.DirMax, map.AllDirCount);
             enemy.SetNumber(map.NoFloor, map.NoChara, map.DirMin, map.DirMax, map.AllDirCount);
@@ -250,8 +251,8 @@ namespace LoopGame
                     HelpInput();
                     music.Init();
                     if (help.NowHelpState == 0)
-                        player.Move(map.NowPlayerSheet, map.SheetSize, map.AllDirCount,help.KeyFix);
-                    if (player.MoveF)  music.SePlay((int)SE.WALK);
+                        player.Move(map.NowPlayerSheet, map.SheetSize, map.AllDirCount, help.KeyFix);
+                    if (player.MoveF) music.SePlay((int)SE.WALK);
 
                 }
                 if (wait.WaitCount(player.MoveF)) //敵のターン
@@ -261,8 +262,9 @@ namespace LoopGame
                     score.Pluse();
                 }
             }
-            dirUI.CenterPos(player.Pos, player.Size);
-            dirUI.DirChenge(player.DirNum, help.KeyFix);
+            //方向表示
+            dirUI.CenterPos(player.Pos, enemy.Pos, player.Size);
+            dirUI.DirChenge(player.DirNum, enemy.DirNum, help.KeyFix);
 
             if (enemy.DeadAction(map.NowMapSheet, map.NowPlayerSheet)) //敵が全部死んだら
             {
@@ -286,7 +288,7 @@ namespace LoopGame
         //ヘルプ
         void HelpInput()
         {
-            help.HelpOpen(GoTitle, HelpFlagChenge, music.Se[(int)SE.ENTER]);
+            help.HelpOpen(GoTitle, HelpFlagChenge);
             if (tu.OpenHelopTuto) HelpTuto();
         }
         void HelpFlagChenge()
