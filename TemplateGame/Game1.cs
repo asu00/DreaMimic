@@ -406,18 +406,18 @@ namespace LoopGame
         }
         void DrawStart()
         {
-            titleAndEnd.StartDrow(spriteBatch);
+            titleAndEnd.StartDrow(spriteBatch,edA.Sc);
         }
         void DrawTutorial()
         {
-            titleAndEnd.BackGround(spriteBatch);
+            titleAndEnd.BackGround(spriteBatch,edA.Sc);
             tu.TutoDraw(spriteBatch);
         }
 
         //ゲーム画面共用
         void DraawPlayBase()
         {
-            titleAndEnd.BackGround(spriteBatch);
+            titleAndEnd.BackGround(spriteBatch,edA.Sc);
             map.Draw(spriteBatch, SIZE, start.Sc);
             enemy.Draw(spriteBatch, SIZE, start.Sc);
         }
