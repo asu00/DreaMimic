@@ -20,7 +20,7 @@ namespace LoopGame
         const float A_MIN = -0.006f;
         const float POS_PULSE = 0.1f;
 
-        public TitleAndEnd()
+        public void Init()
         {
             pos[0] = new Vector2(0, 0);
             pos[1] = new Vector2(0, 576);

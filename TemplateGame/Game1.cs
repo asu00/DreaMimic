@@ -83,6 +83,8 @@ namespace LoopGame
         {
             stage = (int)Stage.stage1;
             scene = Scene.TITLE;
+            titleAndEnd.Init();
+            edA.Ini(SIZE);
         }
         //どこからの初期化でも変わらない
         void StageInitBase()
@@ -92,7 +94,6 @@ namespace LoopGame
             enemy.Init(map.NowEnemySheet, map.SheetSize, EnemyDeadSE);
             start.Ini(player.Pos.X, player.Pos.Y, map.StageCount, (int)stage);
             clear.Ini();
-            edA.Ini(SIZE);
             help.Init(music.Se[(int)SE.ENTER]);
             wait.Init();
             score.Init((int)stage);
@@ -108,6 +109,7 @@ namespace LoopGame
             StageInitBase();
             start.PosChange(SIZE);
             scene = Scene.PLAY_START;
+            dirUI.DirChengeE(player.DirNum, enemy.DirNum, help.KeyFix, map.DirMin, map.DirMax, map.AllDirCount);
             if (stage == map.StageCount - 1)
                 music.SongStopper();
         }
@@ -253,18 +255,18 @@ namespace LoopGame
                     if (help.NowHelpState == 0)
                         player.Move(map.NowPlayerSheet, map.SheetSize, map.AllDirCount, help.KeyFix);
                     if (player.MoveF) music.SePlay((int)SE.WALK);
-
+                    dirUI.DirChecgeP(help.KeyFix, player.DirNum);
                 }
                 if (wait.WaitCount(player.MoveF)) //敵のターン
                 {
                     enemy.Move(player.BeforeDir, player.DirNum, map.SheetSize);
+                    dirUI.DirChengeE(player.DirNum, enemy.DirNum, help.KeyFix, map.DirMin, map.DirMax, map.AllDirCount);
                     music.SePlay((int)SE.ENEMYWALK);
                     score.Pluse();
                 }
             }
             //方向表示
             dirUI.CenterPos(player.Pos, enemy.Pos, player.Size);
-            dirUI.DirChenge(player.DirNum, enemy.DirNum, help.KeyFix);
 
             if (enemy.DeadAction(map.NowMapSheet, map.NowPlayerSheet)) //敵が全部死んだら
             {
@@ -288,7 +290,7 @@ namespace LoopGame
         //ヘルプ
         void HelpInput()
         {
-            help.HelpOpen(GoTitle, HelpFlagChenge);
+            help.HelpOpen(GoTitle, HelpFlagChenge,EnemyUIChecnge);
             if (tu.OpenHelopTuto) HelpTuto();
         }
         void HelpFlagChenge()
@@ -304,6 +306,10 @@ namespace LoopGame
                 tu.OpenHelopTuto = false;
                 help.TotuEnd();
             }
+        }
+        void EnemyUIChecnge()
+        {
+            dirUI.DirChengeE(player.DirNum, enemy.DirNum, help.KeyFix, map.DirMin, map.DirMax, map.AllDirCount);
         }
         void GoTitle()
         {
@@ -406,18 +412,18 @@ namespace LoopGame
         }
         void DrawStart()
         {
-            titleAndEnd.StartDrow(spriteBatch,edA.Sc);
+            titleAndEnd.StartDrow(spriteBatch, edA.Sc);
         }
         void DrawTutorial()
         {
-            titleAndEnd.BackGround(spriteBatch,edA.Sc);
+            titleAndEnd.BackGround(spriteBatch, edA.Sc);
             tu.TutoDraw(spriteBatch);
         }
 
         //ゲーム画面共用
         void DraawPlayBase()
         {
-            titleAndEnd.BackGround(spriteBatch,edA.Sc);
+            titleAndEnd.BackGround(spriteBatch, edA.Sc);
             map.Draw(spriteBatch, SIZE, start.Sc);
             enemy.Draw(spriteBatch, SIZE, start.Sc);
         }
@@ -431,7 +437,7 @@ namespace LoopGame
             DraawPlayBase();
             score.Draw(spriteBatch);
             player.Draw(spriteBatch);
-            dirUI.Draw(spriteBatch, help.DirDraw);
+            dirUI.Draw(spriteBatch, help.DirDraw,enemy.Dead);
             clear.Draw(spriteBatch, SIZE, SIZE);
             help.Draw(spriteBatch);
             tu.HelpTutoDraw(spriteBatch);

@@ -12,72 +12,125 @@ namespace LoopGame
 
         Texture2D dirUi;
         Vector2[] pos;
-        float[] rot;
+        int[] rot;
         const int SIZE = 192;
-        const int C_SIZE = SIZE / 2;
 
         enum KeyNum
         {
             Up = 1, Right, Down, Left,
         }
 
+
         public void Init(int all)
         {
             pos = new Vector2[all];
-            rot = new float[all];
+            rot = new int[all];
         }
         public void Load(ContentManager cm)
         {
             dirUi = cm.Load<Texture2D>("dir");
         }
 
-        public void DirChenge(int pdn, List<int> Edn, bool dirF)
+        //プレイヤー
+        public void DirChecgeP(bool dirF, int pdn)
         {
-            int dn = 0;
-            for (int i = 0; i < rot.Length; i++)
+            if (!dirF) //オフの時
             {
-                if (!dirF & i == 0) //オフの時
-                {
-                    rot[i]= MathHelper.ToRadians(0);
-                    continue;
-                }
-
-                if (i == 0) dn = pdn; //オンの時
-                else dn = Edn[i - 1];
-
-                switch (dn)
+                rot[0] = 0; //プレイヤー
+            }
+            else//オンの時
+            {
+                switch (pdn)
                 {
                     case (int)KeyNum.Up:
-                        rot[i] = MathHelper.ToRadians(0);
+                        rot[0] = 0;
                         break;
                     case (int)KeyNum.Right:
-                        rot[i] = MathHelper.ToRadians(90);
+                        rot[0] = 1;
                         break;
                     case (int)KeyNum.Down:
-                        rot[i] = MathHelper.ToRadians(180);
+                        rot[0] = 2;
                         break;
                     case (int)KeyNum.Left:
-                        rot[i] = MathHelper.ToRadians(270);
+                        rot[0] = 3;
                         break;
+                }
+            }
+        }
+
+        //エネミー
+        public void DirChengeE(int pdn, List<int> Edn, bool dirF, int dirMin, int dirMax, int allDirCount)
+        {
+            for (int i = 1; i < rot.Length; i++)
+            {
+                int edn = Edn[i - 1];
+
+                if (!dirF) //オフの時
+                {
+
+                    //if (i == 0)
+                    //{
+                    //    rot[i] = 0; //プレイヤー
+                    //    continue;
+                    //}
+
+                    switch (pdn)
+                    {
+
+                        case (int)KeyNum.Up:
+                            rot[i] = edn + 0;
+                            break;
+                        case (int)KeyNum.Right:
+                            rot[i] = edn + 3;
+                            break;
+                        case (int)KeyNum.Down:
+                            rot[i] = edn + 2;
+                            break;
+                        case (int)KeyNum.Left:
+                            rot[i] = edn + 1;
+                            break;
+                    }
+
+                    if (rot[i] > dirMax) rot[i] -= allDirCount;
+                    rot[i]--;
+                }
+                else//オンの時
+                {
+                    switch (edn)
+                    {
+                        case (int)KeyNum.Up:
+                            rot[i] = 0;
+                            break;
+                        case (int)KeyNum.Right:
+                            rot[i] = 1;
+                            break;
+                        case (int)KeyNum.Down:
+                            rot[i] = 2;
+                            break;
+                        case (int)KeyNum.Left:
+                            rot[i] = 3;
+                            break;
+                    }
                 }
             }
         }
         public void CenterPos(Vector2 pp, Vector2[] ep, int s)
         {
-            pos[0] = new Vector2(pp.X + s / 2, pp.Y + s / 2);
+            pos[0] = new Vector2(pp.X - s, pp.Y - s);
             for (int i = 1; i < pos.Length; i++)
             {
-                pos[i] = new Vector2(ep[i - 1].X + s / 2, ep[i - 1].Y + s / 2);
+                pos[i] = new Vector2(ep[i - 1].X - s, ep[i - 1].Y - s);
             }
         }
 
-        public void Draw(SpriteBatch sb, bool df)
+        public void Draw(SpriteBatch sb, bool df,bool[] enemyDead)
         {
             if (!df) return;
-            sb.Draw(dirUi, pos[0], null, Color.White, rot[0], new Vector2(C_SIZE, C_SIZE), Vector2.One, SpriteEffects.None, 0);
-            for (int i = 1; i < pos.Length; i++)
+            sb.Draw(dirUi, pos[0], new Rectangle(SIZE * rot[0], 0, SIZE, SIZE), Color.White);
+            for (int i = 1; i < pos.Length; i++) //敵
             {
-                sb.Draw(dirUi, pos[i], null, Color.White * 0.5f, rot[i], new Vector2(C_SIZE, C_SIZE), Vector2.One, SpriteEffects.None, 0);
+                if(!enemyDead[i-1])
+                sb.Draw(dirUi, pos[i], new Rectangle(SIZE * rot[i], 0, SIZE, SIZE), Color.White * 0.5f);
             }
         }
     }

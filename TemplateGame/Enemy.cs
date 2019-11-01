@@ -14,6 +14,7 @@ namespace LoopGame
         const int CHIP_SIZE = 64;
         public int Size => CHIP_SIZE;
         bool[] dead;
+        public bool[] Dead => dead;
 
         //移動　向き
         ChipNum chipNum = new ChipNum();

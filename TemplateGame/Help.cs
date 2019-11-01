@@ -29,15 +29,15 @@ namespace LoopGame
         public int NowHelpState => (int)nowHelpState;
 
         Input input = new Input();
-        enum KeysNum { DC, KC,  H, U, Y, J, N };
+        enum KeysNum { DC, KC, H, U, Y, J, N };
         Keys[] key;
 
         //キー設定
         const int BUTTON = 2;
         Texture2D[] button = new Texture2D[BUTTON];
         Vector2[] buttonPos = new Vector2[BUTTON];
-        readonly Vector2[] buttonPosL = new Vector2[] { new Vector2(135, 280), new Vector2(135, 550) };
-        readonly Vector2[] buttonPosR = new Vector2[] { new Vector2(450, 280), new Vector2(450, 550) };
+        readonly Vector2[] buttonPosL = new Vector2[] { new Vector2(163, 291), new Vector2(163, 547) };
+        readonly Vector2[] buttonPosR = new Vector2[] { new Vector2(419, 291), new Vector2(420, 547) };
 
         bool[] buttonF = new bool[2];
         public bool DirDraw => buttonF[(int)KeysNum.DC];
@@ -48,7 +48,7 @@ namespace LoopGame
             helpPos = new Vector2(97, 97);
             keyConfPos = new Vector2(97, 97);
             keyPos = new Vector2(590, 20);
-            key = new Keys[] { Keys.D1, Keys.D2, Keys.H, Keys.U, Keys.Y, Keys.J, Keys.N };
+            key = new Keys[] { Keys.I, Keys.K, Keys.H, Keys.U, Keys.Y, Keys.J, Keys.N };
             input.Init(key);
 
             for (int i = 0; i < BUTTON; i++)
@@ -71,7 +71,7 @@ namespace LoopGame
                 button[i] = content.Load<Texture2D>("button");
         }
 
-        public void HelpOpen(Action goTitle, Action helpTuto)
+        public void HelpOpen(Action goTitle, Action helpTuto, Action enemyUIChecnge)
         {
             switch (nowHelpState)
             {
@@ -114,6 +114,7 @@ namespace LoopGame
                     break;
                 case HelpState.KEY:
                     KeyConf();
+                    enemyUIChecnge(); //プレイヤーが動かないと変わらないので強制呼び出し
                     break;
                 default:
                     break;
