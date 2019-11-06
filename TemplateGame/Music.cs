@@ -23,7 +23,7 @@ namespace LoopGame
             bgm[0] = content.Load<Song>("Star_of_glitter");
             bgm[1] = content.Load<Song>("Ghost_party");
             bgm[2] = content.Load<Song>("Sparkling meteor shower");
-            bgm[3] = content.Load<Song>("star_of_glitter_Music Box");
+            bgm[3] = content.Load<Song>("Star of glitter (Music Box.Low)");
             se[0] = content.Load<SoundEffect>("pom");
             se[1] = content.Load<SoundEffect>("fall");
             se[2] = content.Load<SoundEffect>("die");

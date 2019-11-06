@@ -355,17 +355,17 @@
 /processorParam:Quality=Best
 /build:Sparkling meteor shower.mp3
 
+#begin Star of glitter (Music Box.Low).mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Star of glitter (Music Box.Low).mp3
+
 #begin Star_of_glitter.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Star_of_glitter.mp3
-
-#begin star_of_glitter_Music Box.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:star_of_glitter_Music Box.mp3
 
 #begin start.png
 /importer:TextureImporter
