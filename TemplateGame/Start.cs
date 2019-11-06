@@ -22,7 +22,7 @@ namespace LoopGame
         const int SIZE = 64, SIZE_ST = SIZE/2;
         int count, countEF;
         bool anime, drop;
-        const int NEWCOUNT = 30, NEWCOUNTEF = 30, SP = 4;
+        const int NEWCOUNT = 30, NEWCOUNTEF = 30, SP = 6;
 
         public int Sc { get { return scroll; } }
 

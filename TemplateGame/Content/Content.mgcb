@@ -79,6 +79,18 @@
 /processorParam:Quality=Best
 /build:die.wav
 
+#begin dir.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:dir.png
+
 #begin drop.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -217,6 +229,18 @@
 /processorParam:TextureFormat=Color
 /build:help.png
 
+#begin keyConfig.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:keyConfig.png
+
 #begin moveCo.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -307,6 +331,18 @@
 /processorParam:Quality=Best
 /build:pom.wav
 
+#begin radio.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:radio.png
+
 #begin skill.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -319,17 +355,17 @@
 /processorParam:Quality=Best
 /build:Sparkling meteor shower.mp3
 
+#begin Star of glitter (Music Box.Low).mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Star of glitter (Music Box.Low).mp3
+
 #begin Star_of_glitter.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Star_of_glitter.mp3
-
-#begin star_of_glitter_Music Box.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:star_of_glitter_Music Box.mp3
 
 #begin start.png
 /importer:TextureImporter

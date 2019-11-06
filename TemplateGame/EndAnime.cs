@@ -23,6 +23,7 @@ namespace LoopGame
         bool[] flag = new bool[FLAG_MAX];
         const int NEWCOUNT = 30, MAXINDEX = 2,SPEED = 2;
         public EndAnime(int height) { Ini(height); }
+        public int Sc { get { return sc; } }
         public void Ini(int height)
         {
             pos = new Vector2(-SIZE, -SIZE);
