@@ -98,6 +98,7 @@ namespace LoopGame
             wait.Init();
             score.Init((int)stage);
             dirUI.Init(enemy.EnemyIndexs.Count + 1);
+            dirUI.DirChengeE(player.DirNum, enemy.DirNum, help.KeyFix, map.DirMin, map.DirMax, map.AllDirCount);
 
             player.SetNumber(map.NoFloor, map.NoChara, map.DirMin, map.DirMax, map.AllDirCount);
             enemy.SetNumber(map.NoFloor, map.NoChara, map.DirMin, map.DirMax, map.AllDirCount);
@@ -109,7 +110,6 @@ namespace LoopGame
             StageInitBase();
             start.PosChange(SIZE);
             scene = Scene.PLAY_START;
-            dirUI.DirChengeE(player.DirNum, enemy.DirNum, help.KeyFix, map.DirMin, map.DirMax, map.AllDirCount);
             if (stage == map.StageCount - 1)
                 music.SongStopper();
         }
