@@ -20,7 +20,7 @@ namespace LoopGame
         const float A_MIN = -0.006f;
         const float POS_PULSE = 0.1f;
 
-        public TitleAndEnd()
+        public void Init()
         {
             pos[0] = new Vector2(0, 0);
             pos[1] = new Vector2(0, 576);
@@ -54,14 +54,14 @@ namespace LoopGame
                 alpha[i] += alp[i];
             }
         }
-        public void BackGround(SpriteBatch sb)
+        public void BackGround(SpriteBatch sb,int sc)
         {
-            for (int i = 0; i < TEX_MAX; i++) sb.Draw(startTex, pos[i], Color.White);
+            for (int i = 0; i < TEX_MAX; i++) sb.Draw(startTex, new Vector2(pos[i].X,pos[i].Y - sc), Color.White);
         }
-        public void StartDrow(SpriteBatch sb)
+        public void StartDrow(SpriteBatch sb,int sc)
         {
             sb.Draw(title, Vector2.Zero, Color.White);
-            BackGround(sb);
+            BackGround(sb,sc);
             sb.Draw(titleString, Vector2.Zero, Color.White);
         }
         public void EndDrow(SpriteBatch sb)

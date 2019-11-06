@@ -12,14 +12,19 @@ namespace LoopGame
     {
         Texture2D enemyChip;
         const int CHIP_SIZE = 64;
+        public int Size => CHIP_SIZE;
         bool[] dead;
+        public bool[] Dead => dead;
 
         //移動　向き
         ChipNum chipNum = new ChipNum();
         Collition collition = new Collition();
         List<int> enemyIndexs;
         List<int> dirNum;
+        public List<int> DirNum => dirNum;
         Vector2[] pos;
+        public Vector2[] Pos => pos;
+
         const int A_D_MOVE = 1;
         Vector2[] drawPos;
         const float D_FIX=5;
@@ -80,7 +85,7 @@ namespace LoopGame
             {
                 if (!dead[i])
                 {
-                    dirNum[i] = chipNum.EnemyDir(beforeDir, playerDir, dirNum[i]);
+                    dirNum[i] = chipNum.ChengeDir(beforeDir, playerDir, dirNum[i]);
 
                     if (dirNum[i] == (int)EnemyKeyNum.Up)
                     {

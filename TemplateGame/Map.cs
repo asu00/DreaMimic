@@ -31,7 +31,7 @@ namespace LoopGame
             0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
             0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
             0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
-            0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+            0, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 0,
             0, 4, 1, 1, 1, 1, 1, 1, 1, 1, 4, 0,
             0, 0, 4, 1, 1, 1, 1, 1, 1, 4, 0, 0,
             0, 0, 0, 4, 4, 4, 4, 4, 4, 0, 0, 0,
@@ -130,19 +130,19 @@ namespace LoopGame
         int[] mapSheet08 = new int[]
         {
              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-             0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0,
-             0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0,
              0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0,
-             0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0,
-             0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0,
-             0, 0, 1, 4, 1, 1, 1, 1, 1, 1, 0, 0,
-             0, 0, 1, 1, 1, 4, 1, 1, 1, 4, 0, 0,
-             0, 0, 1, 1, 4, 1, 4, 1, 4, 1, 0, 0,
-             0, 0, 4, 4, 1, 1, 0, 4, 0, 1, 0, 0,
-             0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0,
+             0, 1, 4, 1, 1, 1, 1, 1, 1, 4, 1, 0,
+             0, 1, 1, 4, 1, 1, 1, 1, 4, 1, 1, 0,
+             0, 1, 1, 1, 4, 1, 1, 4, 1, 1, 1, 0,
+             0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+             0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+             0, 1, 1, 1, 4, 1, 1, 4, 1, 1, 1, 0,
+             0, 1, 1, 4, 1, 1, 1, 1, 4, 1, 1, 0,
+             0, 1, 4, 1, 1, 1, 1, 1 ,1, 4, 1, 0,
+             0, 4, 1, 1, 1, 1, 1, 1, 1, 1, 4, 0,
              0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0,
         };
-        int[] mapSheetEnd = new int[SHEET_SIZE * SHEET_SIZE]; const int END_SHEET_COUNT=1;
+        int[] mapSheetEnd = new int[SHEET_SIZE * SHEET_SIZE]; const int END_SHEET_COUNT = 1;
 
         int[][] mapSheets; //マップを入れる
         int[] nowMapSheet; //現在のシート
@@ -263,13 +263,13 @@ namespace LoopGame
              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+             0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-             0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0,
              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         };
 
@@ -280,15 +280,15 @@ namespace LoopGame
         int[] enemySheet01 = new int[]
         {
              0, 0, 0 ,0, 0, 0, 0, 0, 0, 0, 0, 0,
-             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-             0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
-             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+             0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0,
              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+             0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-             0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
              0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0,
+             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         };
@@ -387,14 +387,14 @@ namespace LoopGame
              0, 0, 0 ,0, 0, 0, 0, 0, 0, 0, 0, 0,
              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-             0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0,
-             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-             0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0,
-             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-             0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
-             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
              0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0,
+             0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0,
+             0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
+             0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0,
+             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         };
 
@@ -402,9 +402,9 @@ namespace LoopGame
         int[] nowEnemySheets;
 
         //シート
-        public int[]  NowMapSheet => nowMapSheet;
-        public int[]  NowPlayerSheet => nowPlayerSheets;
-        public int[]  NowEnemySheet => nowEnemySheets;
+        public int[] NowMapSheet => nowMapSheet;
+        public int[] NowPlayerSheet => nowPlayerSheets;
+        public int[] NowEnemySheet => nowEnemySheets;
         public int SheetSize => SHEET_SIZE;
 
         //番号
@@ -418,10 +418,10 @@ namespace LoopGame
         { //ステージを格納 順番注意 特にマップ
             mapSheets = new int[][] { mapSheet01, mapSheet02, mapSheet03, mapSheet04, mapSheet05, mapSheet06, mapSheet07, mapSheet08, mapSheetEnd };
             playerSheets = new int[][] { playerSheet01, playerSheet02, playerSheet03, playerSheet04, playerSheet05, playerSheet06, playerSheet07, playerSheet08 };
-            enemySheets = new int[][] { enemySheet01, enemySheet02, enemySheet03, enemySheet04, enemySheet05, enemySheet06, enemySheet07, enemySheet08};
-            for (int i = 0; i < SheetSize*SheetSize; i++) mapSheetEnd[i] = (int)ColorNum.noColor;
+            enemySheets = new int[][] { enemySheet01, enemySheet02, enemySheet03, enemySheet04, enemySheet05, enemySheet06, enemySheet07, enemySheet08 };
+            for (int i = 0; i < SheetSize * SheetSize; i++) mapSheetEnd[i] = (int)ColorNum.noColor;
             stageCount = mapSheets.Length - END_SHEET_COUNT; //エンディング用を引く
-            //stageCount = 2; //ショートカット
+            //stageCount = 1; //ショートカット
         }
         public void Load(ContentManager content)
         {
@@ -433,7 +433,7 @@ namespace LoopGame
             co = (int)ColorNum.color100;
             index = 0;
 
-            nowMapSheet= mapSheets[stageNum];
+            nowMapSheet = mapSheets[stageNum];
             nowPlayerSheets = playerSheets[stageNum];
             nowEnemySheets = enemySheets[stageNum];
         }
