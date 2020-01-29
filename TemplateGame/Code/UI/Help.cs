@@ -29,7 +29,7 @@ namespace LoopGame
         public int NowHelpState => (int)nowHelpState;
 
         Input input = new Input();
-        enum KeysNum { DC, KC, H, U, Y, J, N };
+        enum KeysNum { DC, KC, H, U, Y, J, N }; 
         Keys[] key;
 
         //キー設定
@@ -40,8 +40,10 @@ namespace LoopGame
         readonly Vector2[] buttonPosR = new Vector2[] { new Vector2(419, 291), new Vector2(420, 547) };
 
         bool[] buttonF = new bool[2];
-        public bool DirDraw => buttonF[(int)KeysNum.DC];
-        public bool KeyFix => buttonF[(int)KeysNum.KC];
+        public bool DirDraw => buttonF[(int)KeysNum.DC]; //方向表示
+        public bool KeyFix => buttonF[(int)KeysNum.KC]; //方向操作固定
+
+        bool initDirDraw = true; //初期の方向表示をするか***new
 
         public Help()
         {
@@ -51,10 +53,20 @@ namespace LoopGame
             key = new Keys[] { Keys.I, Keys.K, Keys.H, Keys.U, Keys.Y, Keys.J, Keys.N };
             input.Init(key);
 
+            //ボタンの修正
             for (int i = 0; i < BUTTON; i++)
             {
-                buttonF[i] = false;
-                buttonPos[i] = buttonPosL[i];
+                //初期の方向表示をする
+                if (i == (int)KeysNum.DC && initDirDraw)
+                {
+                    buttonF[i] = true;
+                    buttonPos[i] = buttonPosR[i];
+                }
+                else
+                {
+                    buttonF[i] = false;
+                    buttonPos[i] = buttonPosL[i];
+                }
             }
         }
         public void Init(SoundEffect se)
