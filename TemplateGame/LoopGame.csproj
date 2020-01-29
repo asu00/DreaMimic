@@ -41,27 +41,27 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Animetion.cs" />
-    <Compile Include="ChipNum.cs" />
-    <Compile Include="Clear.cs" />
-    <Compile Include="Collition.cs" />
-    <Compile Include="DirUI.cs" />
-    <Compile Include="EndAnime.cs" />
-    <Compile Include="Enemy.cs" />
+    <Compile Include="Code\Chara\Animetion.cs" />
+    <Compile Include="Code\system\ChipNum.cs" />
+    <Compile Include="Code\UI\Clear.cs" />
+    <Compile Include="Code\system\Collition.cs" />
+    <Compile Include="Code\UI\DirUI.cs" />
+    <Compile Include="Code\Chara\EndAnime.cs" />
+    <Compile Include="Code\Chara\Enemy.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="Help.cs" />
-    <Compile Include="Input.cs" />
-    <Compile Include="Key.cs" />
-    <Compile Include="Map.cs" />
-    <Compile Include="Music.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="Code\UI\Help.cs" />
+    <Compile Include="Code\system\Input.cs" />
+    <Compile Include="Code\system\Key.cs" />
+    <Compile Include="Code\Map.cs" />
+    <Compile Include="Code\system\Music.cs" />
+    <Compile Include="Code\Chara\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Score.cs" />
-    <Compile Include="Start.cs" />
-    <Compile Include="TitleAndEnd.cs" />
-    <Compile Include="Tutorial.cs" />
-    <Compile Include="Wait.cs" />
+    <Compile Include="Code\UI\Score.cs" />
+    <Compile Include="Code\Chara\Start.cs" />
+    <Compile Include="Code\UI\TitleAndEnd.cs" />
+    <Compile Include="Code\UI\Tutorial.cs" />
+    <Compile Include="Code\system\Wait.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -75,7 +75,7 @@
     <Content Include="iconD.ico" />
   </ItemGroup>
   <ItemGroup>
-    <MonoGameContentReference Include="Content\Content.mgcb" />
+    <MonoGameContentReference Include="Code\Content\Content.mgcb" />
     <None Include="app.manifest" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
