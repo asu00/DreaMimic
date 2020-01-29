@@ -80,7 +80,7 @@ namespace LoopGame
             help = content.Load<Texture2D>("option");
             keyConf = content.Load<Texture2D>("keyConfig");
             for (int i = 0; i < BUTTON; i++)
-                button[i] = content.Load<Texture2D>("button");
+                button[i] = content.Load<Texture2D>("radio");
         }
 
         public void HelpOpen(Action goTitle, Action helpTuto, Action enemyUIChecnge)
