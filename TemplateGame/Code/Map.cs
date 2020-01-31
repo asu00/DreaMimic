@@ -6,6 +6,15 @@ using System.Diagnostics;
 
 namespace LoopGame
 {
+    /*ステージの追加
+    ①既存のmapSheet配列を複製し、変数名を変える
+    ②床番号を書き換える(床番号は Content内の画像"field" を参照)
+    ③書き換えたmapSheet配列の変数名を、mapSheet"s"配列に追加
+    ④プレイヤーとオバケも同様に作成
+    ⑤Score.csのtime配列に移動回数を追加
+
+    ＊ステージ生成時は"s"の方の配列を参照するので、入れ忘れなどに気を付けてください
+    */
     class Map
     {
 

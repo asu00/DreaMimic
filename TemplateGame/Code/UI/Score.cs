@@ -20,7 +20,7 @@ namespace LoopGame
         //スコア
         int count;
         const int MAX = 10;
-        int[] time = new int[] { 20, 10, 7, 7, 3, 6, 7, 8 };
+        int[] time = new int[] { 20, 10, 7, 7, 3, 6, 7, 8 }; 
         int nowTime;
         public int NowTime { get { return nowTime; } }
         public int Count { get { return count; } }
@@ -53,7 +53,7 @@ namespace LoopGame
 
         public void Draw(SpriteBatch sb)
         {
-            //iキーで初期化 表示
+    
             sb.Draw(scoreT, scoreTPos, TextColor);
             sb.Draw(scoreCo, new Rectangle((int)scoreCoPos.X-SIZE, (int)scoreCoPos.Y, SIZE, SIZE + SIZE), new Rectangle(count / ONE_COUNT * SIZE, 0, SIZE, SIZE + SIZE), TextColor);
             sb.Draw(scoreCo, new Rectangle((int)scoreCoPos.X, (int)scoreCoPos.Y, SIZE, SIZE + SIZE), new Rectangle(count % ONE_COUNT * SIZE, 0, SIZE, SIZE + SIZE), TextColor);
